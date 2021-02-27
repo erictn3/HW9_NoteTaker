@@ -3,6 +3,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
+import { v4 as uuidv4 } from 'uuid';
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -24,7 +25,7 @@ const hide = (elem) => {
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
-
+// gets the "new" lists of notes
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
@@ -67,7 +68,8 @@ const renderActiveNote = () => {
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
-    text: noteText.value,
+    text: noteText.value,    
+    id: uuidv4(),
   };
   saveNote(newNote).then(() => {
     getAndRenderNotes();
