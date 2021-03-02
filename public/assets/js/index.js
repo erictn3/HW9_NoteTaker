@@ -69,7 +69,7 @@ const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,    
-    id: uuidv4(),
+    // id: uuidv4(),
   };
   saveNote(newNote).then(() => {
     getAndRenderNotes();
